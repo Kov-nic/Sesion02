@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">   <!-- Se define la decodificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión / Registro</title>
+    <style>
+        /*Estilo CSS para la pagina*/
+        body{
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;   
+        }
+        .container {
+            background-color: aqua;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group{
+            margin-bottom: 16px;
+        }
+        .form-group label{
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input{
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group button{
+            width: 100%;
+            padding: 10px;
+            background-color: cornsilk;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover{
+            background-color: azure;
+        }
+        .toggle-link{
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Formulario de inicio de sesion -->
+        <div id="login-form">
+            <h2>Inicio de Sesión</h2>
+            <div id="login-message" class="message" style="display: none;"></div>
+            <div class="form-group">
+                <label for="login-username">Nombre de Usuario</label>
+                <input type="text" id="login-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Contraseña</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="login()">Iniciar Sesión</button>
+            </div>
+            <div class="toggle-link" onclick="toggleForms()">¿No tienes una cuenta? Regístrate</div>
+            <!-- Enlace para cambio al formulario de registro(Cambia correctamente mas no se registra el usuario, de igual forma queda simulado el registro) -->
+        </div>
+        <div id="register-form" style="display: none;">
+            <h2>Registro</h2>
+            <!-- Formulario de registro -->
+            <div id="register-message" class="message" style="display: none;"></div>
+            <div class="form-group">
+                <label for="register-username">Nombre de Usuario</label>
+                <input type="text" id="register-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="register-email">Correo Electrónico</label>
+                <input type="email" id="register-email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Contraseña</label>
+                <input type="password" id="register-password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="register()">Registrarse</button>
+            </div>
+            <div class="toggle-link" onclick="toggleForms()">¿Ya tienes una cuenta? Inicia Sesión</div>
+        </div>
+    </div>
+    <script>
+        //Funcion para alternar entre los formularios de inicio de sesion y registro
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+//Funcion para el manejo del inicio de sesion
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            const message = document.getElementById('login-message');
+
+            // Simulación de validación
+            if (username === 'Nicolas' && password === '1234') {
+                message.textContent = 'Inicio de sesión exitoso';
+                message.className = 'message success';
+                message.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'Bienvenido.jsp';
+                }, 2000); // Redirige después de 2 segundos
+            } else {
+                message.textContent = 'Usuario o contraseña inválidos';
+                message.className = 'message error';
+                message.style.display = 'block';
+            }
+        }
+//Funcion para manejar el registro
+        function register() {
+            const username = document.getElementById('register-username').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const message = document.getElementById('register-message');
+
+            // Simulación de registro exitoso
+            message.textContent = 'Registro exitoso';
+            message.className = 'message success';
+            message.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
